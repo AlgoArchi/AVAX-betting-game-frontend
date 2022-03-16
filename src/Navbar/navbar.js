@@ -34,15 +34,15 @@ function Navigation() {
         const validation = await metamaskProvider.request({
             method: 'wallet_addEthereumChain',
             params: [{
-                chainId: "0xA869",
-                rpcUrls: ["https://api.avax-test.network/ext/bc/C/rpc/"],
-                chainName: "FUJI Testnet",
+                chainId: "0xA86A",
+                rpcUrls: ["https://api.avax.network/ext/bc/C/rpc"],
+                chainName: "Avalanche Mainnet",
                 nativeCurrency: {
                     name: "AVAX",
                     symbol: "AVAX",
                     decimals: 18
                 },
-                blockExplorerUrls: ["https://testnet.snowtrace.io/"]
+                blockExplorerUrls: ["https://snowtrace.io/"]
             }]
         });
 
@@ -57,14 +57,16 @@ function Navigation() {
         setAccountConnect(true);
     }
 
-    // useEffect(() => {
-    //     const connectValidate = window.ethereum.selectedAddress();
-    //     if (connectValidate != undefined) {
-    //         setShow(false);
-    //         setGamebtnShow(true);
-    //         setWalletconnect(false);
-    //     }
-    // }, [])
+    useEffect(() => {
+        // const connectValidate = window.ethereum.selectedAddress();
+        if (accountConnect == true) {
+            setShow(false);
+            setGamebtnShow(true);
+            setWalletconnect(false);
+        } else {
+            return false;
+        }
+    }, [accountConnect])
 
     return (
         <div className={visible?'App-light':'App-dark'}>
